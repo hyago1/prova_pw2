@@ -4,7 +4,7 @@ package com.tads.pw.prova2.Entitys;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.beans.ConstructorProperties;
+import java.util.Date;
 
 @Entity
 @Data
@@ -18,11 +18,11 @@ public class Camisa {
     private String marca;
     private String tamanho;//gg, g, m, p, pp
     private String categoria;
-    private Boolean isDeleted;
+    private Date isDeleted;
     private Float valor;
 
 
-    public Camisa(Long id, String imageURL, String marca, String tamanho, String categoria, Boolean isDeleted, Float valor) {
+    public Camisa(Long id, String imageURL, String marca, String tamanho, String categoria, Date isDeleted, Float valor) {
         this.id = id;
         this.imageURL = imageURL;
         this.marca = marca;

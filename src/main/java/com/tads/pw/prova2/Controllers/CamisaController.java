@@ -20,12 +20,12 @@ public class CamisaController {
 
 //Rotas de incio / e /admin
     @GetMapping("/")
-    public String index(Model model, HttpServletRequest request){
+    public String index(Model model){
         model.addAttribute("camisaList", camisaServices.getAll());
         return "index";
     }
     @GetMapping("/admin")
-    public String admin(Model model, HttpServletRequest request){
+    public String admin(Model model){
         model.addAttribute("camisaList", camisaServices.getAll());
         return "admin";
     }
@@ -49,8 +49,12 @@ public class CamisaController {
         //chama o service pra editar
     }
     @GetMapping("/deletar/{id}")
-    public void deletar(@PathVariable Long id){
+    public String deletar(@PathVariable Long id){
         //chama o service pra deletar
+
+        camisaServices.deleteById(id);
+        return "redirect:/admin";
+
     }
     @GetMapping("/restaurar/{id}")
     public void restaurar(@PathVariable Long id){
