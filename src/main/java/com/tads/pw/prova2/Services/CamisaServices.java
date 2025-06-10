@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CamisaServices {
@@ -18,6 +19,15 @@ public class CamisaServices {
     @Autowired
     CamisaRepository camisaRepository;
 
+
+    public Optional<Camisa> findById(Long id){
+        return camisaRepository.findById(id);
+    }
+    
+    public List<Camisa> findByIsDeletedIsNull(){
+        return camisaRepository.findByIsDeletedIsNull();
+    }
+
     public List<Camisa> getAll(){
 
         return camisaRepository.findAll();
@@ -25,8 +35,16 @@ public class CamisaServices {
     public void save(Camisa camisa){
         camisaRepository.save(camisa);
     }
-    public void deleteById(Long id){
-        camisaRepository.deleteById(id);
+    public void isDeleteById(Long id){
+        Camisa camisa = camisaRepository.findById(id).get(); // busca a linha pelo ID
+        camisa.setIsDeleted(System.currentTimeMillis());
+        camisaRepository.save(camisa);
+    }
+
+    public void restaurarById(Long id){
+        Camisa camisa = camisaRepository.findById(id).get(); // busca a linha pelo ID
+        camisa.setIsDeleted(null);
+        camisaRepository.save(camisa);
     }
 
 }

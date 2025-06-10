@@ -3,7 +3,6 @@ package com.tads.pw.prova2.Controllers;
 
 import com.tads.pw.prova2.Entitys.Camisa;
 import com.tads.pw.prova2.Services.CamisaServices;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +20,7 @@ public class CamisaController {
 //Rotas de incio / e /admin
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("camisaList", camisaServices.getAll());
+        model.addAttribute("camisaList", camisaServices.findByIsDeletedIsNull());
         return "index";
     }
     @GetMapping("/admin")
@@ -45,20 +44,22 @@ public class CamisaController {
 
 
     @GetMapping("/editar/{id}")
-    public void editar(@PathVariable Long id){
+    public String editar(@PathVariable Long id,  Model model){
         //chama o service pra editar
+        model.addAttribute("camisaEdit", camisaServices.findById(id));
+        return "edicao";
     }
     @GetMapping("/deletar/{id}")
     public String deletar(@PathVariable Long id){
         //chama o service pra deletar
-
-        camisaServices.deleteById(id);
+        camisaServices.isDeleteById(id);
         return "redirect:/admin";
-
     }
     @GetMapping("/restaurar/{id}")
-    public void restaurar(@PathVariable Long id){
+    public String restaurar(@PathVariable Long id){
         //chama o service pra restaurar
+        camisaServices.restaurarById(id);
+        return "redirect:/admin";
     }
 
 

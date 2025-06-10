@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>ProvaPW Cadastro</title>
@@ -18,26 +18,27 @@
             <h5 class="mb-0">Cadastrar Camisa</h5>
         </div>
         <div class="card-body">
-            <form action="/salvar" method="post">
+            <form action="/salvar"  th:object="${camisaEdit}" method="post">
+                <input type="text" th:field='*{id}' style="display: none" id="id" name="id">
                 <div class="mb-2">
                     <label for="imageURL" class="form-label">imageURL</label>
-                    <input type="text" class="form-control" id="imageURL" name="imageURL" placeholder="imageURL" required>
+                    <input type="text"  th:field='*{imageURL}' class="form-control" id="imageURL" name="imageURL" placeholder="imageURL" required>
                 </div>
                 <div class="mb-2">
                     <label for="marca" class="form-label">Marca</label>
-                    <input type="text" class="form-control" id="marca" name="marca" placeholder="Marca" required>
+                    <input type="text" th:field='*{marca}'  class="form-control" id="marca" name="marca" placeholder="Marca" required>
                 </div>
                 <div class="mb-2">
-                    <label for="tamanho" class="form-label">Tamanho</label>
-                    <input type="text" class="form-control" id="tamanho" name="tamanho" placeholder="Tamanho" required>
+                    <label for="tamanho"  class="form-label">Tamanho</label>
+                    <input type="text" th:field='*{tamanho}'  class="form-control" id="tamanho" name="tamanho" placeholder="Tamanho" required>
                 </div>
                 <div class="mb-2">
-                    <label for="categoria" class="form-label">Categoria</label>
-                    <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Categoria" required>
+                    <label for="categoria"  class="form-label">Categoria</label>
+                    <input type="text"  th:field='*{categoria}'  class="form-control" id="categoria" name="categoria" placeholder="Categoria" required>
                 </div>
                 <div class="mb-2">
                     <label for="valor" class="form-label">Valor</label>
-                    <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor" required>
+                    <input type="text" th:field='*{valor}'  class="form-control" id="valor" name="valor" placeholder="Valor" required>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-success mb-2">Cadastrar</button>

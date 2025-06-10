@@ -41,8 +41,9 @@
                     <td th:text="${c.categoria}"></td>
                     <td th:text="${c.valor}"></td>
                     <td>
+                        <a th:href="@{'/restaurar/' + ${c.id}}" class="btn btn-sm btn-primary">Restaurar</a>
                         <a th:href="@{'/editar/' + ${c.id}}" class="btn btn-sm btn-warning me-1">Editar</a>
-                        <a th:href="@{'/deletar/' + ${c.id}}" class="btn btn-sm btn-danger">Deletar</a>
+                        <a th:href="@{'/deletar/' + ${c.id}}" class="btn btn-sm btn-danger me-1">Deletar</a>
                     </td>
                 </tr>
                 </tbody>
